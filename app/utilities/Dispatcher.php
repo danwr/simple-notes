@@ -19,6 +19,8 @@ class Dispatcher
      */
     private $method;
 
+    private $succeeded;
+    
     /**
      * Router constructor.
      */
@@ -26,6 +28,7 @@ class Dispatcher
     {
         $this->request  = $_SERVER['REQUEST_URI'];
         $this->method   = $_SERVER['REQUEST_METHOD'];
+        $this->succeeded = false;
     }
 
     /**
@@ -53,6 +56,7 @@ class Dispatcher
             $controller  = new $class;
 
             $controller->{$method}($_GET);
+            $this->succeeded = true;
         }
 
         return true;
@@ -78,8 +82,17 @@ class Dispatcher
             $controller  = new $class;
 
             $controller->{$method}($_POST);
+            $this->succeeded = true;
         }
 
         return true;
     }
+    
+    public function elseFail($path, $action)
+    {
+        if (!$this->succeeded) {
+            http_response_code(400);
+        }
+    }
+    
 }
