@@ -2,35 +2,43 @@
 
 namespace controllers;
 
-use data/Notes;
+use model/NotePad;
 
 class NotesController extends Controller
 {
-    private $notes;
+    private notepad;
     
     function __construct()
     {
-        $this->notes = new Notes();
+        $this->notepad = new NotePad();
     }
 
     public function index($get = null)
     {
-        // TODO: list of notes. Restricted access.
+        // TODO: Restricted access.
+        $notes = $this->notepad->loadAllNotes();
+        return $this->renderer()->renderView('IndexPage', ['notes' => $notes]);
     }
     
     public function delete($get = null)
     {
-        // TODO: delete note. Restricted access.
+        // TODO: Restricted access.
+        if (!is_null($get)) {
+            $this->notepad->delete($get['id']);
+        }
+        return $this->redirect('/');
     }
     
     public function insert($get = null)
     {
-        // TODO: create note. Restricted access.
+        // TODO: Restricted access.
+        $this->notepad->create($post['title'], $post['content'], $post['tags']);
+        return $this->redirect('/');
     }
     
     public function edit($post)
     {
-        $this->notes->edit($post['id'], $post['title'], $post['content'], $post['tags']);
+        $this->notepad->edit($post['id'], $post['title'], $post['content'], $post['tags']);
         return $this->redirect('/');
     }
     
