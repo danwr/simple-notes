@@ -10,4 +10,6 @@ $dispatcher->dispatchGET('/delete', 'NotesController#delete');
 $dispatcher->dispatchGET('/new', 'NotesController#insert');
 $dispatcher->dispatchGET('/edit', 'NotesController#edit');
 
+$dispatcher->elseFail();
+
 ?>
