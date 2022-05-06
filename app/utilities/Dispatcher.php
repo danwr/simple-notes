@@ -88,7 +88,7 @@ class Dispatcher
         return true;
     }
     
-    public function elseFail($path, $action)
+    public function elseFail()
     {
         if (!$this->succeeded) {
             printf("Dispatcher::elseFail ! method = %s, request = '%s'\n", $this->method, $this->request);
