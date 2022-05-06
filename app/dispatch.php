@@ -1,6 +1,6 @@
 <?php
 
-use utilities/Dispatcher;
+use utilities\Dispatcher;
 
 $dispatcher = new Dispatcher();
 
