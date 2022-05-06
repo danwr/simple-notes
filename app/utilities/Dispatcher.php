@@ -91,6 +91,7 @@ class Dispatcher
     public function elseFail($path, $action)
     {
         if (!$this->succeeded) {
+            print("Dispatcher::elseFail ! method = %s, request = '%s'\n", $this->method, $this->request);
             http_response_code(400);
         }
     }
