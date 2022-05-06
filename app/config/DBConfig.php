@@ -8,7 +8,7 @@ class DBConfiguration
   
   public function __construct()
   {
-      $this->sqliteFile = 'mynotes.sqlite';
+      $this->sqliteFile = 'mynotes_development.sqlite';
   }
   
   public function sqliteFile()
