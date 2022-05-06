@@ -18,19 +18,20 @@ class NotesController extends Controller
         // TODO: list of notes. Restricted access.
     }
     
-    public function delete()
+    public function delete($get = null)
     {
         // TODO: delete note. Restricted access.
     }
     
-    public function insert()
+    public function insert($get = null)
     {
         // TODO: create note. Restricted access.
     }
     
-    public function edit()
+    public function edit($post)
     {
-        // TODO: edit note. Restricted access.
+        $this->notes->edit($post['id'], $post['title'], $post['content'], $post['tags']);
+        return $this->redirect('/');
     }
     
 }
