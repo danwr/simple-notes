@@ -30,7 +30,7 @@
             <input class="form-control" type="text" placeholder="Title" name="title" required>
         </div>
         <div class="form-group">
-            <textarea class="form-control" rows="5" placeholder="What do you have in mind?" name="content" autofocus
+            <textarea class="form-control" rows="5" style="width:98%;" placeholder="What do you have in mind?" name="content" autofocus
                       required></textarea>
         </div>
         <div class="btn-group pull-right">
@@ -99,8 +99,8 @@
                                         </div>
                                         <div class="form-group">
                                             <textarea class="form-control"
-                                                      rows="5"
-                                                      placeholder="What do you have in mind ?"
+                                                      rows="5" style="width:98%;"
+                                                      placeholder="What do you have in mind?"
                                                       name="content"
                                                       required><?= $note->getContent(); ?></textarea>
                                         </div>
