@@ -7,11 +7,11 @@
  * everywhere. This is great for larger projects where you're orchestrating a lot of different
  * objects.
  */
-require_once __DIR__ . '/../app/autoload.php';
+require_once dirname(__DIR__) . '/autoload.php';
 
 /**
  * All of your web requests are sent to this index file, and then based on what
  * the URI is, the dispatcher then issues the correct commands to PHP.
  */
-require_once __DIR__ . '/../app/dispatch.php';
+require_once dirname(__DIR__) . '/dispatch.php';
 ?>
