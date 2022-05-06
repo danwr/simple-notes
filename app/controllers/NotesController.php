@@ -1,8 +1,8 @@
 <?php
 
-namespace controllers;
+namespace Controllers;
 
-use model/NotePad;
+use model\NotePad;
 
 class NotesController extends Controller
 {
