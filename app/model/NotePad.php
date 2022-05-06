@@ -2,7 +2,7 @@
 
 namespace Model;
 
-use config/Database;
+use config\Database;
 use PDO;
 
 class NotePad
