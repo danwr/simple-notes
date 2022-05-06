@@ -1,6 +1,6 @@
 <?php
 
-namespace utilities;
+namespace Utilities;
 
 /**
  * Class Renderer
