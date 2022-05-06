@@ -36,6 +36,7 @@ class Note
     
     public function getContent()
     {
+        // TODO: markdown support
         return htmlspecialchars($this->content, ENT_QUOTES, 'UTF-8');
     }
     
