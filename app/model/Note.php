@@ -7,21 +7,28 @@ use DateTime;
 class Note
 {
     private $id;
+    private $ref;
     private $title;
     private $content;
-    private $created_at;
+    private $creation;
     
     function __construct($row)
     {
         $this->id = $row['id'];
+        $this->ref = $row['ref'];
         $this->title = $row['title'];
         $this->content = $row['content'];
-        $this->created_at = new DateTime($row['created_at']);
+        $this->creation = new DateTime($row['creation']);
     }
     
     public function getID()
     {
         return $this->id;
+    }
+    
+    public function getRef()
+    {
+        return $this->ref;
     }
     
     public function getTitle()
@@ -42,7 +49,7 @@ class Note
     
     public function getCreationDateTime()
     {
-        return $this->created_at;
+        return $this->creation;
     }
 }
 
