@@ -1,6 +1,7 @@
 <?php
 
-require(__DIRNAME__ . '/CreateNotesTable.php');
+require_once dirname(__DIR__) . '/app/autoload.php';
+require_once __DIR__ . '/CreateNotesTable.php';
 
 $createNotesTable = new CreateNotesTable;
 
