@@ -25,7 +25,7 @@
     <div class="page-header">
         <h2>Post a new note</h2>
     </div>
-    <form role="form" action="/insert" method="POST">
+    <form role="form" action="insert" method="POST">
         <div class="form-group">
             <input class="form-control" type="text" placeholder="Title" name="title" required>
         </div>
@@ -74,10 +74,10 @@
                                    data-target="#<?= $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                <a class="btn btn-danger btn-xs" title="Delete this note" href="/delete?id=<?= $note->getID(); ?>">
+                                <a class="btn btn-danger btn-xs" title="Delete this note" href="delete?id=<?= $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
-                                <a class="btn btn-info btn-xs" title="Download this note" href="/export?id=<?= $note->getID(); ?>"
+                                <a class="btn btn-info btn-xs" title="Download this note" href="export?id=<?= $note->getID(); ?>"
                                    target="_blank">
                                     <span class="glyphicon glyphicon-download-alt"></span>
                                 </a>
@@ -92,7 +92,7 @@
                                     <h4 class="modal-title">Edit note</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="/update" method="POST">
+                                    <form role="form" action="update" method="POST">
                                         <div class="form-group">
                                             <input class="form-control" type="text" placeholder="Title" name="title"
                                                    value="<?= $note->getTitle(); ?>">

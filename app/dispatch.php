@@ -1,6 +1,9 @@
 <?php
 
 use utilities\Dispatcher;
+use config\Config;
+
+$config = new Config();
 
 $dispatcher = new Dispatcher();
 
