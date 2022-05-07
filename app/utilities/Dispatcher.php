@@ -51,7 +51,7 @@ class Dispatcher
 
         if ($path === $this->request) {
             $actionParts = explode('#', $action);
-            $class       = 'Controllers\\' . $actionParts[0];
+            $class       = 'controllers\\' . $actionParts[0];
             $method      = $actionParts[1];
             $controller  = new $class;
 
@@ -91,8 +91,9 @@ class Dispatcher
     public function elseFail()
     {
         if (!$this->succeeded) {
-            printf("Dispatcher::elseFail ! method = %s, request = '%s'\n", $this->method, $this->request);
-            http_response_code(400);
+            printf("Dispatcher::elseFail ! method = '%s', request = '%s'\n", $this->method, $this->request);
+            //http_response_code(400);
+	    var_dump($_SERVER);
         }
     }
     

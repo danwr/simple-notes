@@ -14,7 +14,7 @@ class Renderer
      */
     function __construct()
     {
-        $this->viewDir = dirname(__DIR__) . '/Views/';
+        $this->viewDir = dirname(__DIR__) . '/views/';
     }
 
     /**

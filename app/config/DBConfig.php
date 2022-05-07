@@ -2,7 +2,7 @@
 
 namespace config;
 
-class DBConfiguration
+class DBConfig
 {
   private $sqliteFile;
   
@@ -13,7 +13,7 @@ class DBConfiguration
   
   public function sqliteFile()
   {
-      return $this->$sqliteFile;
+      return $this->sqliteFile;
   }
 }
 ?>

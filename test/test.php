@@ -1,3 +1,4 @@
+#!/usr/bin/php54
 <?php
 
 $_SERVER['REQUEST_URI'] = "/";

@@ -1,12 +1,12 @@
 <?php
 
-namespace Controllers;
+namespace controllers;
 
 use model\NotePad;
 
 class NotesController extends Controller
 {
-    private notepad;
+    private $notepad;
     
     function __construct()
     {
@@ -18,7 +18,7 @@ class NotesController extends Controller
         // TODO: Restricted access.
         print("NotesController::index\n");
         $notes = $this->notepad->loadAllNotes();
-        return $this->renderer()->renderView('IndexPage', ['notes' => $notes]);
+        return $this->renderer()->renderView('IndexPage', array('notes' => $notes));
     }
     
     public function delete($get = null)

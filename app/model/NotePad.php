@@ -11,7 +11,8 @@ class NotePad
     
     function __construct()
     {
-        $this->connection = (new Database())->createConnection();
+	$db = new Database();
+        $this->connection = $db->createConnection();
     }
 
     private function normalizeTags($tags)
@@ -68,9 +69,9 @@ class NotePad
         $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes');
         $statement->execute();
         
-        $rawNotes = $statement->fetchAll(PDO:FETCH_ASSOC);
+        $rawNotes = $statement->fetchAll(PDO::FETCH_ASSOC);
         
-        $notes = [];
+        $notes = array();
         
         foreach ($rawNotes as $key => $note) {
             $notes[$key] = new Note($note);
@@ -85,7 +86,8 @@ class NotePad
         $statement->bindParam(':id', $id);
         $statement->execute();
         
-        $rawNote = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+        $rawNotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $rawNote = $rawNotes[0];
         $note = new Note($rawNote);
         
         return $note;
