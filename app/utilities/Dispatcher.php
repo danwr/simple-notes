@@ -1,6 +1,14 @@
 <?php
 
-namespace Utilities;
+use config\Config;
+
+namespace utilities;
+
+if (!function_exists('str_starts_with')) {
+    function str_starts_with($haystack, $needle) {
+        return (string)$needle !== '' && strncmp($haystack, $needle, strlen($needle)) === 0;
+    }
+}
 
 /**
  * Class Dispatcher
@@ -28,6 +36,11 @@ class Dispatcher
     {
         $this->request  = $_SERVER['REQUEST_URI'];
         $this->method   = $_SERVER['REQUEST_METHOD'];
+        $config = new \config\Config();
+        $base_href = $config->value('base_href');
+        if (!is_null($base_href) && $base_href != '' && str_starts_with($this->request, $base_href)) {
+	    $this->request = substr($this->request, strlen($base_href));
+        }
         $this->succeeded = false;
     }
 
