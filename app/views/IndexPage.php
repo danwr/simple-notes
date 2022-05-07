@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+function URIForAction($action) {
+	return $args['base_href'] . $action;
+}
+function insertAction($action) {
+	echo URIForAction($action);
+}
+?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -25,7 +33,7 @@
     <div class="page-header">
         <h2>Post a new note</h2>
     </div>
-    <form role="form" action="insert" method="POST">
+    <form role="form" action="<?php insertAction('insert');?>" method="POST">
         <div class="form-group">
             <input class="form-control" type="text" placeholder="Title" name="title" required>
         </div>
@@ -38,7 +46,7 @@
                 <span class="glyphicon glyphicon-remove"></span> Clear
             </button>
             <button class="btn btn-success" name="new" type="submit">
-                <span class="glyphicon glyphicon-send"></span> Send
+                <span class="glyphicon glyphicon-send"></span>Send
             </button>
         </div>
     </form>
@@ -64,27 +72,27 @@
                 <?php foreach ($args['notes'] as $note): ?>
                     <tr>
                         <td>
-                            <small><?= $note->getBriefTitle(); ?></small>
+                            <small><?php echo $note->getBriefTitle(); ?></small>
                         </td>
-                        <td><?= $note->getCreationDateTime()->format('H:i'); ?></td>
-                        <td><?= $note->getCreationDateTime()->format('d/m/Y'); ?></td>
+                        <td><?php echo $note->getCreationDateTime()->format('H:i'); ?></td>
+                        <td><?php echo $note->getCreationDateTime()->format('d/m/Y'); ?></td>
                         <td class="pull-right">
                             <div class="btn-group">
                                 <a class="btn btn-default btn-xs" title="Edit this note" href="#" data-toggle="modal"
-                                   data-target="#<?= $note->getID(); ?>">
+                                   data-target="#<?php echo $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                <a class="btn btn-danger btn-xs" title="Delete this note" href="delete?id=<?= $note->getID(); ?>">
+                                <a class="btn btn-danger btn-xs" title="Delete this note" href="<? insertAction('delete'); ?>?id=<?php echo $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
-                                <a class="btn btn-info btn-xs" title="Download this note" href="export?id=<?= $note->getID(); ?>"
+                                <a class="btn btn-info btn-xs" title="Download this note" href="<? insertAction('export'); ?>?id=<?php echo $note->getID(); ?>"
                                    target="_blank">
                                     <span class="glyphicon glyphicon-download-alt"></span>
                                 </a>
                             </div>
                         </td>
                     </tr>
-                    <div class="modal fade" id="<?= $note->getID(); ?>" role="dialog">
+                    <div class="modal fade" id="<?php echo $note->getID(); ?>" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -92,10 +100,10 @@
                                     <h4 class="modal-title">Edit note</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="update" method="POST">
+                                    <form role="form" action="<?php insertAction('update');?>" method="POST">
                                         <div class="form-group">
                                             <input class="form-control" type="text" placeholder="Title" name="title"
-                                                   value="<?= $note->getTitle(); ?>">
+                                                   value="<?php echo $note->getTitle(); ?>">
                                         </div>
                                         <div class="form-group">
                                             <textarea class="form-control"
@@ -106,7 +114,7 @@
                                         </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <input type="hidden" name="id" value="<?= $note->getID(); ?>">
+                                    <input type="hidden" name="id" value="<?php echo $note->getID(); ?>">
                                     <div class="btn-group pull-right">
                                         <button class="btn btn-success" name="edit" type="submit">
                                             <span class="glyphicon glyphicon-floppy-disk"></span> Save
