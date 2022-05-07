@@ -1,0 +1,10 @@
+<?php
+
+require(__DIRNAME__ . '/CreateNotesTable.php');
+
+$createNotesTable = new CreateNotesTable;
+
+$createNotesTable->create();
+
+?>
+OK.
