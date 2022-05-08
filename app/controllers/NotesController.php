@@ -39,8 +39,7 @@ class NotesController extends Controller
     public function insert($post = null)
     {
         // TODO: Restricted access.
-        print("NotesController::insert\n");
-        var_dump($post);
+
         $this->notepad->create($post['title'], $post['content'], $post['tags']);
         //return $this->redirect($this->base_href . 'list');
         return true; // temp for easier debuggin
@@ -55,11 +54,8 @@ class NotesController extends Controller
 
 	public function show($get = null)
 	{
-	    print("NotesController::show\n");
 	    $id = $this->notepad->IDForRef($get['ref']);
 	    $note = $this->notepad->loadNote($id);
-	    printf("show. ref = '%s'\n", $get['ref']);
-	    var_dump($note);
 	    return $this->renderer()->renderView('NotePage', array('note' => $note));
 	}    
 }
