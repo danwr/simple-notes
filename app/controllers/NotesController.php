@@ -50,7 +50,16 @@ class NotesController extends Controller
         $this->notepad->edit($post['id'], $post['title'], $post['content'], $post['tags']);
         return $this->redirect($this->base_href);
     }
-    
+
+	public function show($get = null)
+	{
+	    print("NotesController::show\n");
+	    $id = $this->notepad->IDForRef($get['ref']);
+	    $note = $this->notepad->loadNote($id);
+	    printf("show. ref = '%s'\n", $get['ref']);
+	    var_dump($note);
+	    return $this->renderer()->renderView('NotePage', array('note' => $note));
+	}    
 }
 
 
