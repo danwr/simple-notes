@@ -76,7 +76,11 @@ class NotePad
         if (count($answers) > 0) {
         	printf("IDForRef(%s): answers[0] = ", $ref, $answers[0]);
         }
-        return count($answers) > 0 ? $answers[0] : 0;
+        if (count($answers) == 0) {
+        	return 0;
+        }
+        $answer = $answers[0];
+        return $answer['id'];
     }
     
     public function loadAllNotes() 
