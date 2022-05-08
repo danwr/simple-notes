@@ -78,7 +78,7 @@ class NotePad
     
     public function loadAllNotes() 
     {
-        $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes');
+        $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes ORDER BY creation DESC');
         $statement->execute();
         
         $rawNotes = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -99,9 +99,14 @@ class NotePad
         $statement->execute();
         
         $rawNotes = $statement->fetchAll(PDO::FETCH_ASSOC);
+        print("loadNote: rawNotes:");
+        var_dump($rawNotes);
         $rawNote = $rawNotes[0];
+        print("\nloadNote: rawNote:");
+        var_dump($rawNote);
         $note = new Note($rawNote);
-        
+        print("\nloadNote: note:");
+        var_dump($note);
         return $note;
     }
     
