@@ -72,9 +72,8 @@ class NotePad
         $statement->bindParam(':ref', $ref);
         $statement->execute();
         $answers = $statement->fetchAll(PDO::FETCH_ASSOC);
-        printf("IDForRef(%s): count(answers) = %d\n", $ref, count($answers));
         if (count($answers) > 0) {
-        	printf("IDForRef(%s): answers[0] = ", $ref, $answers[0]);
+        	printf("IDForRef(%s): answers[0] = %d\n", $ref, $answers[0]);
         }
         if (count($answers) == 0) {
         	return 0;
@@ -106,14 +105,8 @@ class NotePad
         $statement->execute();
         
         $rawNotes = $statement->fetchAll(PDO::FETCH_ASSOC);
-        print("loadNote: rawNotes:");
-        var_dump($rawNotes);
         $rawNote = $rawNotes[0];
-        print("\nloadNote: rawNote:");
-        var_dump($rawNote);
         $note = new Note($rawNote);
-        print("\nloadNote: note:");
-        var_dump($note);
         return $note;
     }
     
