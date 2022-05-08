@@ -76,7 +76,7 @@ function relativeDate($datetime) {
         <h2><?php echo $note->getTitle(); ?></h2>
     </div>
     <div class="body">
-    <?php echo $note->getContent(); ?>
+    <?php echo $note->getContentAsHTML(); ?>
     </div>
     <div class="creation">
     <?php echo relativeDate($note->getCreationDateTime()); ?>

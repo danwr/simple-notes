@@ -1,5 +1,7 @@
 <?php
 
+use utilities\Parsedown;
+
 namespace model;
 
 use DateTime;
@@ -47,6 +49,12 @@ class Note
     {
         // TODO: markdown support
         return htmlspecialchars($this->content, ENT_QUOTES, 'UTF-8');
+    }
+    
+    public function getContentAsHTML()
+    {
+    	$parsedown = new Parsedown();
+    	return $parsedown->text($this->content);
     }
     
     public function getTags()
