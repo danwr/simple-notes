@@ -13,6 +13,8 @@ $dispatcher->dispatchGET('delete/', 'NotesController#delete');
 $dispatcher->dispatchPOST('new/', 'NotesController#insert');
 $dispatcher->dispatchPOST('edit/', 'NotesController#edit');
 
+$dispatcher->dispatchGET('note/', 'NotesController#show');
+
 $dispatcher->elseFail();
 
 ?>
