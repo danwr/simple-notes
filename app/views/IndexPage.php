@@ -35,7 +35,7 @@ function insertAction($base_href, $action) {
     <div class="page-header">
         <h2>Post a new note</h2>
     </div>
-    <form role="form" action="<?php insertAction($base_href, 'insert');?>" method="POST">
+    <form role="form" action="<?php insertAction($base_href, 'new');?>" method="POST">
         <div class="form-group">
             <input class="form-control" type="text" placeholder="Title" name="title" required>
         </div>
