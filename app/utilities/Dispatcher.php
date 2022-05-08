@@ -90,7 +90,7 @@ class Dispatcher
 
         if ($path === $this->request) {
             $actionParts = explode('#', $action);
-            $class       = '\Controllers\\' . $actionParts[0];
+            $class       = 'controllers\\' . $actionParts[0];
             $method      = $actionParts[1];
             $controller  = new $class;
 

@@ -36,12 +36,14 @@ class NotesController extends Controller
         return $this->redirect($this->base_href);
     }
     
-    public function insert($get = null)
+    public function insert($post = null)
     {
         // TODO: Restricted access.
         print("NotesController::insert\n");
+        var_dump($post);
         $this->notepad->create($post['title'], $post['content'], $post['tags']);
-        return $this->redirect($this->base_href);
+        //return $this->redirect($this->base_href . 'list');
+        return true; // temp for easier debuggin
     }
     
     public function edit($post)
