@@ -52,15 +52,17 @@ function relativeDate($datetime) {
             max-width: 680px;
         }
 
-	    div.creation {
-	    	padding-top: 1em;
-	    	margin-left: 1em;
+		div.metadata {
+			padding-top: 1em;
+			margin-left: 1em;
+			color: #888888;
+		}
+		
+	    span.creation {
 	    	color: #888888;
 	    }
 	    
-		div.tags {
-			padding-top: 1em;
-			margin-left: 1em;
+		span.tags {
 			color: #777799;
 		}
         textarea {
@@ -78,13 +80,15 @@ function relativeDate($datetime) {
     <div class="body">
     <?php echo $note->getContentAsHTML(); ?>
     </div>
-    <div class="creation">
+    <div class="metadata">
+    <span class="creation">
     <?php echo relativeDate($note->getCreationDateTime()); ?>
-    </div>
-    <div class="tags">
+    </span>
+    <span class="tags">tags:
     <?php foreach ($tagArray as $tag): ?>
     <em><?php echo $tag; ?></em> 
     <?php endforeach; ?>
+    </span>
     </div>
 </div>
 
