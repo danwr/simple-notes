@@ -73,7 +73,7 @@ function relativeDate($datetime) {
     <?php echo $note->getContent(); ?>
     </div>
     <div class="creation">
-    <?php echo relativeDate($note->getCreationDate()); ?>
+    <?php echo relativeDate($note->getCreationDateTime()); ?>
     </div>
     <div class="tags">
     <?php foreach ($tagArray as $tag): ?>
