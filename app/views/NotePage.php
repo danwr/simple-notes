@@ -52,6 +52,12 @@ function relativeDate($datetime) {
             max-width: 680px;
         }
 
+	    div.creation {
+	    	padding-top: 1em;
+	    	margin-left: 1em;
+	    	color: #888888;
+	    }
+	    
 		div.tags {
 			padding-top: 1em;
 			margin-left: 1em;
