@@ -26,10 +26,17 @@ function tagsArray($tags) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
+    	body {
+			font-family: "Courier New", Courier, mono;   
+			margin: 1em 1em 1em 1em;
+    	}
         .container {
             max-width: 680px;
         }
 
+		div.tags {
+			color: #777799;
+		}
         textarea {
             resize: vertical; /* allow only vertical stretch */
         }
@@ -44,9 +51,6 @@ function tagsArray($tags) {
     </div>
     <div class="body">
     <?php echo $note->getContent(); ?>
-    </div>
-    <div class="tags">
-    <?php echo $note->getTags(); ?>
     </div>
     <div class="tags">
     <?php foreach ($tagArray as $tag): ?>
