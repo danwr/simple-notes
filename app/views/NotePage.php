@@ -20,12 +20,12 @@ function relativeDate($datetime) {
 	$todayStart->modify("midnight");
 	
 	$hours = $todayStart->diff($datetime) / 3600.0;
-	if ($hours < -24.0) {
+	if ($hours < 0) {
 		return $datetime->format('Y-m-d');
-	} else if ($hours <= 0.0) {
-		return "today";
 	} else if ($hours <= 24.0) {
-		return "yesterday";
+		return "today";
+	} else if ($hours <= 48.0) {
+		return "today";
 	} else if ($hours <= 24.0*10.0) {
 		return sprintf("%d days ago", int($hours / 24.0));
 	} else {
@@ -59,7 +59,7 @@ function relativeDate($datetime) {
 		}
 		
 	    span.creation {
-	    	color: #888888;
+	    	color: #88aa88;
 	    }
 	    
 		span.tags {
@@ -84,6 +84,7 @@ function relativeDate($datetime) {
     <span class="creation">
     <?php echo relativeDate($note->getCreationDateTime()); ?>
     </span>
+    &nbsp;
     <span class="tags">tags:
     <?php foreach ($tagArray as $tag): ?>
     <em><?php echo $tag; ?></em> 
