@@ -19,7 +19,7 @@ function relativeDate($datetime) {
 	$todayStart = new DateTime();
 	$todayStart->modify("midnight");
 	
-	$hours = $date->diff($datetime) / 3600.0;
+	$hours = $todayStart->diff($datetime) / 3600.0;
 	if ($hours < -24.0) {
 		return $datetime->format('Y-m-d');
 	} else if ($hours <= 0.0) {
