@@ -27,8 +27,9 @@ function tagsArray($tags) {
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
     	body {
-			font-family: "Courier New", Courier, mono;   
+			font-family: "Helvetica Neue", helvetica, sans-serif;   
 			margin: 1em 1em 1em 1em;
+			width: 700px;
     	}
         .container {
             max-width: 680px;
