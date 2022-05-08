@@ -65,7 +65,7 @@ function relativeDate($datetime) {
 		span.tags {
 			color: #666666;
 		}
-		span.tags.em {
+		span.tags em {
 		    color: rgb(170, 85, 17);
 		}
         textarea {
