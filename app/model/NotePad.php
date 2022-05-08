@@ -69,6 +69,7 @@ class NotePad
     public function IDForRef($ref)
     {
         $statement = $this->connection->prepare('SELECT id FROM notes WHERE ref = :ref');
+        $statement->bindParam(':ref', $ref);
         $statement->execute();
         $answers = $statement->fetchAll(PDO::FETCH_ASSOC);
         return count($answers) > 0 ? $answers[0] : 0;
