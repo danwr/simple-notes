@@ -72,9 +72,6 @@ class NotePad
         $statement->bindParam(':ref', $ref);
         $statement->execute();
         $answers = $statement->fetchAll(PDO::FETCH_ASSOC);
-        if (count($answers) > 0) {
-        	printf("IDForRef(%s): answers[0] = %d\n", $ref, $answers[0]);
-        }
         if (count($answers) == 0) {
         	return 0;
         }
