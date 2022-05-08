@@ -2,7 +2,7 @@
 <?php
 $base_href = $args['base_href'];
 $note = $args['note'];
-$tagArray = explode($note->getTags(), ' ');
+$tagArray = explode(' ', $note->getTags());
 function URIForAction($base_href, $action) {
 	return $base_href . $action;
 }
@@ -10,7 +10,10 @@ function insertAction($base_href, $action) {
 	echo URIForAction($base_href, $action);
 }
 function tagsArray($tags) {
-	return explode($tags, ' ');
+        if (is_null($tags)) {
+            return array();
+        }
+	return explode(' ', $tags);
 }
 ?>
 <html>
