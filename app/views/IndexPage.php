@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <?php
-function URIForAction($action) {
-	return $args['base_href'] . $action;
+$base_href = $args['base_href'];
+
+function URIForAction($base_href, $action) {
+	return $base_href . $action;
 }
-function insertAction($action) {
-	echo URIForAction($action);
+function insertAction($base_href, $action) {
+	echo URIForAction($base_href, $action);
 }
 ?>
 <html>
@@ -33,7 +35,7 @@ function insertAction($action) {
     <div class="page-header">
         <h2>Post a new note</h2>
     </div>
-    <form role="form" action="<?php insertAction('insert');?>" method="POST">
+    <form role="form" action="<?php insertAction($base_href, 'insert');?>" method="POST">
         <div class="form-group">
             <input class="form-control" type="text" placeholder="Title" name="title" required>
         </div>
@@ -82,10 +84,10 @@ function insertAction($action) {
                                    data-target="#<?php echo $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
-                                <a class="btn btn-danger btn-xs" title="Delete this note" href="<? insertAction('delete'); ?>?id=<?php echo $note->getID(); ?>">
+                                <a class="btn btn-danger btn-xs" title="Delete this note" href="<? insertAction($base_href, 'delete'); ?>?id=<?php echo $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </a>
-                                <a class="btn btn-info btn-xs" title="Download this note" href="<? insertAction('export'); ?>?id=<?php echo $note->getID(); ?>"
+                                <a class="btn btn-info btn-xs" title="Download this note" href="<? insertAction($base_href, 'export'); ?>?id=<?php echo $note->getID(); ?>"
                                    target="_blank">
                                     <span class="glyphicon glyphicon-download-alt"></span>
                                 </a>
@@ -100,7 +102,7 @@ function insertAction($action) {
                                     <h4 class="modal-title">Edit note</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <form role="form" action="<?php insertAction('update');?>" method="POST">
+                                    <form role="form" action="<?php insertAction($base_href, 'update');?>" method="POST">
                                         <div class="form-group">
                                             <input class="form-control" type="text" placeholder="Title" name="title"
                                                    value="<?php echo $note->getTitle(); ?>">

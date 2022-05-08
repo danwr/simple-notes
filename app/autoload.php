@@ -14,7 +14,7 @@ class Autoloader
     public static function loader($class)
     {
         $file = dirname(__DIR__) . '/app/' . str_replace('\\', '/', $class) . '.php';
-	printf("file is '%s'\n", $file);
+
         if (file_exists($file)) {
             include $file;
 

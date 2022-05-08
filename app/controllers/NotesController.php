@@ -4,13 +4,18 @@ namespace controllers;
 
 use model\NotePad;
 
+use config\Config;
+
 class NotesController extends Controller
 {
     private $notepad;
+    private $base_href;
     
     function __construct()
     {
         $this->notepad = new NotePad();
+        $config = new Config();
+        $this->base_href = $config->value('base_href');
     }
 
     public function index($get = null)
@@ -18,7 +23,7 @@ class NotesController extends Controller
         // TODO: Restricted access.
         print("NotesController::index\n");
         $notes = $this->notepad->loadAllNotes();
-        return $this->renderer()->renderView('IndexPage', array('notes' => $notes));
+        return $this->renderer()->renderView('IndexPage', array('notes' => $notes, 'base_href' => $this->base_href));
     }
     
     public function delete($get = null)
@@ -28,7 +33,7 @@ class NotesController extends Controller
         if (!is_null($get)) {
             $this->notepad->delete($get['id']);
         }
-        return $this->redirect('/');
+        return $this->redirect($this->base_href);
     }
     
     public function insert($get = null)
@@ -36,14 +41,14 @@ class NotesController extends Controller
         // TODO: Restricted access.
         print("NotesController::insert\n");
         $this->notepad->create($post['title'], $post['content'], $post['tags']);
-        return $this->redirect('/');
+        return $this->redirect($this->base_href);
     }
     
     public function edit($post)
     {
         print("NotesController::edit\n");
         $this->notepad->edit($post['id'], $post['title'], $post['content'], $post['tags']);
-        return $this->redirect('/');
+        return $this->redirect($this->base_href);
     }
     
 }

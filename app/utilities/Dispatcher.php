@@ -104,9 +104,8 @@ class Dispatcher
     public function elseFail()
     {
         if (!$this->succeeded) {
-            printf("Dispatcher::elseFail ! method = '%s', request = '%s'\n", $this->method, $this->request);
+            printf("<p>Dispatcher::elseFail ! method = '%s', request = '%s'</p>\n", $this->method, $this->request);
             //http_response_code(400);
-	    var_dump($_SERVER);
         }
     }
     
