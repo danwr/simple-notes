@@ -73,6 +73,9 @@ class NotePad
         $statement->execute();
         $answers = $statement->fetchAll(PDO::FETCH_ASSOC);
         printf("IDForRef(%s): count(answers) = %d\n", $ref, count($answers));
+        if (count($answers) > 0) {
+        	printf("IDForRef(%s): answers[0] = ", $ref, $answers[0]);
+        }
         return count($answers) > 0 ? $answers[0] : 0;
     }
     
@@ -94,7 +97,7 @@ class NotePad
     
     public function loadNote($id)
     {
-        $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes WHERE id = :id ORDER BY creation DESC');
+        $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes WHERE id = :id');
         $statement->bindParam(':id', $id);
         $statement->execute();
         
