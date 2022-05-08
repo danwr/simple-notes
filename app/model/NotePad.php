@@ -1,9 +1,15 @@
 <?php
 
-namespace Model;
+namespace model;
 
 use config\Database;
 use PDO;
+
+function rand_int_compat($min, $max)
+{
+    // replace with random_int() in php 7 and later
+    return rand($min, $max);
+}
 
 class NotePad
 {
@@ -45,14 +51,18 @@ class NotePad
         
         $ref = '';
         do {
-            $valA = random_int(1, 99);
-            $valB = random_int(1, 14);
-            $valC = random_int(0, 99);
+            $valA = rand_int_compat(1, 99);
+            $valB = rand_int_compat(1, 14);
+            $valC = rand_int_compat(0, 99);
             $val = $valC + 100 * ($valB + 15 * $valA);
-            $base64encoded = base64_encode($strval($value));
+	    print("newRandomRef. val = "); print($val);
+            $base64encoded = base64_encode(strval($val));
+            print("newRandomRef. base64encoded = "); print($base64encoded);
             $ref = rtrim(strtr($base64encoded, '+/', '-_'), '=');
+            print("newRandomRef. ref = "); print($ref);
         } while (in_array($ref, $refs));
-        
+
+        printf("newRandomRef: %s\n", $ref);        
         return $ref;
     }
     
@@ -96,6 +106,7 @@ class NotePad
     public function create($title, $content, $tags)
     {
         $datetime = date("Y-m-d H:i:s");
+        printf("create: title,content,tags = '%s','%s','%s'\n", $title, $content, $tags);
         $statement = $this->connection->prepare('INSERT INTO notes (ref, title, content, tags, creation)
                                                                    VALUES(:ref, :title, :content, :tags, :creation)');
         $statement->bindParam(':ref', $this->newRandomRef()); 
