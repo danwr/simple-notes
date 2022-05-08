@@ -15,6 +15,23 @@ function tagsArray($tags) {
         }
 	return explode(' ', $tags);
 }
+function relativeDate($datetime) {
+	$todayStart = new DateTime();
+	$todayStart->modify("midnight");
+	
+	$hours = $date->diff($datetime) / 3600.0;
+	if ($hours < -24.0) {
+		return $datetime->format('Y-m-d');
+	} else if ($hours <= 0.0) {
+		return "today";
+	} else if ($hours <= 24.0) {
+		return "yesterday";
+	} else if ($hours <= 24.0*10.0) {
+		return sprintf("%d days ago", int($hours / 24.0));
+	} else {
+		return $datetime->format('Y-m-d');
+	}
+}
 ?>
 <html>
 <head>
@@ -36,6 +53,8 @@ function tagsArray($tags) {
         }
 
 		div.tags {
+			padding-top: 1em;
+			margin-left: 1em;
 			color: #777799;
 		}
         textarea {
@@ -52,6 +71,9 @@ function tagsArray($tags) {
     </div>
     <div class="body">
     <?php echo $note->getContent(); ?>
+    </div>
+    <div class="creation">
+    <?php echo relativeDate($note->getCreationDate()); ?>
     </div>
     <div class="tags">
     <?php foreach ($tagArray as $tag): ?>
