@@ -3,10 +3,13 @@
 $base_href = $args['base_href'];
 
 function URIForAction($base_href, $action) {
-	return $base_href . $action;
+	return $base_href . $action . '/';
 }
 function insertAction($base_href, $action) {
 	echo URIForAction($base_href, $action);
+}
+function insertNoteLink($base_href, $ref) {
+        echo $base_href . 'note/?ref=' . $ref;
 }
 ?>
 <html>
@@ -38,6 +41,7 @@ function insertAction($base_href, $action) {
     <form role="form" action="<?php insertAction($base_href, 'new');?>" method="POST">
         <div class="form-group">
             <input class="form-control" type="text" placeholder="Title" name="title" required>
+            <input class="form-control" type="text" placeholder="Tags" name="tags">
         </div>
         <div class="form-group">
             <textarea class="form-control" rows="5" style="width:98%;" placeholder="What do you have in mind?" name="content" autofocus
@@ -47,7 +51,7 @@ function insertAction($base_href, $action) {
             <button class="btn btn-danger" type="reset">
                 <span class="glyphicon glyphicon-remove"></span> Clear
             </button>
-            <button class="btn btn-success" name="new" type="submit">
+            <button class="btn btn-success" name="new" formaction="<?php insertAction($base_href, 'new');?>" type="submit" formmethod="POST">
                 <span class="glyphicon glyphicon-send"></span>Send
             </button>
         </div>
@@ -74,7 +78,7 @@ function insertAction($base_href, $action) {
                 <?php foreach ($args['notes'] as $note): ?>
                     <tr>
                         <td>
-                            <small><?php echo $note->getBriefTitle(); ?></small>
+                            <small><a href="<?php insertNoteLink($base_href, $note->getRef()); ?>"><?php echo $note->getBriefTitle(); ?></a></small>
                         </td>
                         <td><?php echo $note->getCreationDateTime()->format('H:i'); ?></td>
                         <td><?php echo $note->getCreationDateTime()->format('d/m/Y'); ?></td>
