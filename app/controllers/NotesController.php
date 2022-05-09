@@ -5,6 +5,7 @@ namespace controllers;
 use model\NotePad;
 
 use config\Config;
+use utilities\Parsedown;
 
 class NotesController extends Controller
 {
@@ -45,19 +46,26 @@ class NotesController extends Controller
         return true; // temp for easier debuggin
     }
     
-    public function edit($post)
+    public function edit($get)
     {
         print("NotesController::edit\n");
+        $id = $this->notepad->IDForRef($get['ref']);
+        $note = $this->notepad->loadNote($id);
+        return $this->renderer()->renderView('EditNotePage', array('note' => $note, 'base_href' => $this->base_href));
+    }
+    
+    public function update($post)
+    {
         $this->notepad->edit($post['id'], $post['title'], $post['content'], $post['tags']);
         return $this->redirect($this->base_href);
     }
 
-	public function show($get = null)
-	{
-	    $id = $this->notepad->IDForRef($get['ref']);
-	    $note = $this->notepad->loadNote($id);
-	    return $this->renderer()->renderView('NotePage', array('note' => $note));
-	}    
+    public function show($get = null)
+    {
+        $id = $this->notepad->IDForRef($get['ref']);
+        $note = $this->notepad->loadNote($id);
+        return $this->renderer()->renderView('NotePage', array('note' => $note));
+    }    
 }
 
 
