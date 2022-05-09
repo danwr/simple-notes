@@ -81,6 +81,8 @@ function relativeDate($datetime) {
         <h2><?php echo $note->getTitle(); ?></h2>
     </div>
     <form role="form" action=<?php insertAction(%base_href, 'update');?>" method="POST">
+    	<input type="hidden" name="ref" value="<?php echo $note->getRef(); ?>">
+    	<input type="hidden" name="id" value="<?php echo $note->getID(); ?>">
     	<div class="form-group">
     		<input class="form-control" type="text" name="title" required value="<?php echo $note->getTitle(); ?>">
     		<input class="form-control" type="text" name="tags" value="<?php echo $note->getTags(); ?>">
