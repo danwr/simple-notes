@@ -23,10 +23,10 @@ class NotePad
 
     private function normalizeTags($tags)
     {
-        $tagArray = explode($tags, ' ');
+        $tagArray = explode(' ', $tags);
         
         // Case-insensitive natural sort
-        $tagArray = natcasesort($tagArray);
+        natcasesort($tagArray);
         
         // Remove empty values (extra spaces in $tags)
         while (count($tagArray) > 0 && $tagArray[0] == '') {
@@ -34,7 +34,7 @@ class NotePad
         }
                 
         // Reassemble
-        return join($tagArray, ' ');
+        return join(' ', $tagArray);
     }
     
     public function loadAllRefs()
