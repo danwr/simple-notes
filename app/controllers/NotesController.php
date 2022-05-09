@@ -48,7 +48,7 @@ class NotesController extends Controller
     
     public function edit($get)
     {
-        print("NotesController::edit\n");
+        printf("NotesController::edit %s\n", $get['ref']);
         $id = $this->notepad->IDForRef($get['ref']);
         $note = $this->notepad->loadNote($id);
         return $this->renderer()->renderView('EditNotePage', array('note' => $note, 'base_href' => $this->base_href));

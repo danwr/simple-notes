@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+var_dump($args);
 $base_href = $args['base_href'];
 $note = $args['note'];
 $tagArray = explode(' ', $note->getTags());
@@ -80,7 +81,7 @@ function relativeDate($datetime) {
     <div class="page-header">
         <h2><?php echo $note->getTitle(); ?></h2>
     </div>
-    <form role="form" action=<?php insertAction(%base_href, 'update');?>" method="POST">
+    <form role="form" action="<?php insertAction($base_href, 'update/');?>" method="POST">
     	<input type="hidden" name="ref" value="<?php echo $note->getRef(); ?>">
     	<input type="hidden" name="id" value="<?php echo $note->getID(); ?>">
     	<div class="form-group">
