@@ -17,7 +17,7 @@ class NotePad
     
     function __construct()
     {
-	$db = new Database();
+	    $db = new Database();
         $this->connection = $db->createConnection();
     }
 
@@ -105,6 +105,12 @@ class NotePad
         $rawNote = $rawNotes[0];
         $note = new Note($rawNote);
         return $note;
+    }
+    
+    public function loadNoteByRef($ref)
+    {
+    	$id = IDForRef($ref);
+    	return loadNote($id);
     }
     
     public function create($title, $content, $tags)
