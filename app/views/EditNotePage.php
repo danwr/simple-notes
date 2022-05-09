@@ -80,22 +80,23 @@ function relativeDate($datetime) {
     <div class="page-header">
         <h2><?php echo $note->getTitle(); ?></h2>
     </div>
-    <div class="body">
-    <?php echo $note->getContentAsHTML(); ?>
-    </div>
-    <div class="metadata">
-    <span class="creation">
-    <?php echo relativeDate($note->getCreationDateTime()); ?>
-    </span>
-    &nbsp;
-    <span class="tags">tags:
-    <?php foreach ($tagArray as $tag): ?>
-    <em><?php echo $tag; ?></em> 
-    <?php endforeach; ?>
-    </span>
-    &nbsp;
-    <a href="<?php echo $base_href . 'edit/?ref=' . $note->getRef(); ?>">edit</a>
-    </div>
+    <form role="form" action=<?php insertAction(%base_href, 'update');?>" method="POST">
+    	<div class="form-group">
+    		<input class="form-control" type="text" name="title" required value="<?php echo $note->getTitle(); ?>">
+    		<input class="form-control" type="text" name="tags" value="<?php echo $note->getTags(); ?>">
+    	</div>
+    	<div class="form-group">
+    		<textarea class="form-control" rows="5" style="width:98%;" value="<?php echo $note->getContent(); ?>" required>
+    			<?php echo $note->getContent(); ?>
+    		</textarea>
+    	</div>
+    	<div class="btn-group pull-right">
+    		<button class="btn btn-success" name="update">
+    			Save
+    		</button>
+    	</div>
+    </form>
+
 </div>
 
 </body>
