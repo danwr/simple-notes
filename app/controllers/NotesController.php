@@ -64,8 +64,8 @@ class NotesController extends Controller
     {
         $id = $this->notepad->IDForRef($get['ref']);
         $note = $this->notepad->loadNote($id);
-        return $this->renderer()->renderView('NotePage', array('note' => $note));
-    }    
+        return $this->renderer()->renderView('NotePage', array('note' => $note, 'base_href' => $this->base_href));
+    }
 }
 
 
