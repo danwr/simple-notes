@@ -93,6 +93,8 @@ function relativeDate($datetime) {
     <em><?php echo $tag; ?></em> 
     <?php endforeach; ?>
     </span>
+    &nbsp;
+    <a href="<?php echo $base_ref . 'edit/?ref=' . $note->getRef(); ?>"edit</a>
     </div>
 </div>
 
