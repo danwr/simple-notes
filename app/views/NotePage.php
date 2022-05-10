@@ -15,23 +15,9 @@ function tagsArray($tags) {
         }
 	return explode(' ', $tags);
 }
-function relativeDate($datetime) {
-	$todayStart = new DateTime();
-	$hoursBeforeNow = $todayStart.diff($datetime) / 3600.0;
-	$todayStart->setTime(0, 0, 0); // midnight
-	$hours = $todayStart->diff($datetime) / 3600.0;
-	if ($hours < 0) {
-		return $datetime->format('Y-m-d');
-	} else if ($hoursBeforeNow < 1.0) {
-		return "minutes ago";
-	} else if ($hoursBeforeNow <= 24.0) {
-		return "today";
-	} else if ($hours <= 24.0*10.0) {
-		return sprintf("%d days ago", int($hours / 24.0));
-	} else {
-		return $datetime->format('Y-m-d');
-	}
-}
+
+use utilties\relativeDate;
+
 ?>
 <html>
 <head>
