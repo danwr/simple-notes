@@ -56,6 +56,9 @@ function tagsArray($tags) {
 			font: 12pt helvetica;
 			width: 98%;
 		}
+		button {
+			font: 12pt helvetica;
+		}
 		input#tags {
 			color: rgb(170, 85, 17);
 		}
