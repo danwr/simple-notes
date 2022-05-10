@@ -1,0 +1,85 @@
+<?php
+
+function relativeDate($datetime) {
+	$todayStart = new DateTime();
+	$hoursBeforeNow = ($todayStart->getTimestamp() - $datetime->getTimestamp()) / 3600.0;
+	$todayStart->setTime(0, 0, 0); // midnight
+	$hoursBeforeToday = ($todayStart->getTimestamp() - $datetime->getTimestamp()) / 3600.0;
+	
+	$isToday = ($todayStart->format('Y-m-d') == $datetime->format('Y-m-d'));
+	$yesterday = new DateTime("yesterday");
+	$isYesterday = ($yesterday->format('Y-m-d') == $datetime->format('Y-m-d'));
+	
+	if ($hoursBeforeNow < 0) {
+		return $datetime->format('Y-m-d');
+	} else if ($hoursBeforeNow < 1.5) {
+		$minutesBeforeNow = $hoursBeforeNow * 60.0;
+		if ($minutesBeforeNow < 10.0) {
+			return "just now";
+		} else if ($minutesBeforeNow < 45.0) {
+			return "minutes ago";
+		} else {
+			return "an hour ago";
+		}
+	} else if ($hoursBeforeNow < 3.0) {
+		return "a couple hours ago";
+	} else if ($hoursBeforeNow < 8.0 && !$isToday) {
+		return "several hours ago";
+	} else if ($isToday) {
+		return "today";
+	} else if ($isYesterday) {
+		return "yesterday";
+	} else if ($hoursBeforeNow <= 24.0*28.5) {
+		return sprintf("%d days ago", (int)round($hoursBeforeNow / 24.0));
+	} else if ($hoursBeforeNow <= 24.0*7.0*10.0) {
+		return sprintf("%d weeks ago", (int)round($hoursBeforeNow / (24.0*7.0)));
+	} else {
+		return $datetime->format('F Y');
+	}
+}
+
+$test1 = new DateTime();
+printf("Right now: %s\n", $test1->format('Y-m-d H:i:s T'));
+$test1->modify("-5 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-5 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+$test1->modify("-5 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+$test1->modify("-5 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+$test1->modify("-5 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+$test1->modify("-15 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+$test1->modify("-30 minutes");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-5 hours");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-23 hours");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-3 days");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-3 days");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-3 days");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-7 days");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-30 days");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+$test1->modify("-30 days");
+printf("%s: %s\n", $test1->format('Y-m-d H:i:s T'), relativeDate($test1));
+
+
+
+?>
