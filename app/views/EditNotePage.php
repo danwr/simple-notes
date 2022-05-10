@@ -76,7 +76,7 @@ function tagsArray($tags) {
     		<input class="form-control" type="text" name="tags" value="<?php echo $note->getTags(); ?>">
     	</div>
     	<div class="form-group">
-    		<textarea class="form-control" rows="12" style="width:98%;" name="content" required><?php echo $note->getContent(); ?></textarea>
+    		<textarea class="form-control" rows="20" style="width:98%;" name="content" required><?php echo $note->getContent(); ?></textarea>
     	</div>
     	<div class="btn-group pull-right">
     		<button class="btn btn-success" name="update">
