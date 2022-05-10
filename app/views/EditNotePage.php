@@ -89,9 +89,7 @@ function relativeDate($datetime) {
     		<input class="form-control" type="text" name="tags" value="<?php echo $note->getTags(); ?>">
     	</div>
     	<div class="form-group">
-    		<textarea class="form-control" rows="5" style="width:98%;" value="<?php echo $note->getContent(); ?>" required>
-    			<?php echo $note->getContent(); ?>
-    		</textarea>
+    		<textarea class="form-control" rows="5" style="width:98%;" required><?php echo $note->getContent(); ?></textarea>
     	</div>
     	<div class="btn-group pull-right">
     		<button class="btn btn-success" name="update">
