@@ -32,9 +32,9 @@ function tagsArray($tags) {
 			margin: 1em 1em 1em 1em;
 			width: 700px;
     	}
-        .container {
-            max-width: 680px;
-        }
+		.container {
+			max-width: 680px;
+		}
 
 		div.metadata {
 			padding-top: 1em;
@@ -54,6 +54,7 @@ function tagsArray($tags) {
 		}
 		input, textarea {
 			font: 12pt helvetica;
+			width: 98%;
 		}
         textarea {
             resize: vertical; /* allow only vertical stretch */
