@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-var_dump($args);
+
 $base_href = $args['base_href'];
 $note = $args['note'];
 $tagArray = explode(' ', $note->getTags());
@@ -15,23 +15,6 @@ function tagsArray($tags) {
             return array();
         }
 	return explode(' ', $tags);
-}
-function relativeDate($datetime) {
-	$todayStart = new DateTime();
-	$todayStart->modify("midnight");
-	
-	$hours = $todayStart->diff($datetime) / 3600.0;
-	if ($hours < 0) {
-		return $datetime->format('Y-m-d');
-	} else if ($hours <= 24.0) {
-		return "today";
-	} else if ($hours <= 48.0) {
-		return "today";
-	} else if ($hours <= 24.0*10.0) {
-		return sprintf("%d days ago", int($hours / 24.0));
-	} else {
-		return $datetime->format('Y-m-d');
-	}
 }
 ?>
 <html>
@@ -89,7 +72,7 @@ function relativeDate($datetime) {
     		<input class="form-control" type="text" name="tags" value="<?php echo $note->getTags(); ?>">
     	</div>
     	<div class="form-group">
-    		<textarea class="form-control" rows="5" style="width:98%;" name="content" required><?php echo $note->getContent(); ?></textarea>
+    		<textarea class="form-control" rows="12" style="width:98%;" name="content" required><?php echo $note->getContent(); ?></textarea>
     	</div>
     	<div class="btn-group pull-right">
     		<button class="btn btn-success" name="update">
