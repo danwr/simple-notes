@@ -1,10 +1,9 @@
 <?php
 
-use utilities\Parsedown;
-
 namespace model;
 
 use DateTime;
+use utilities\Parsedown;
 
 class Note
 {
