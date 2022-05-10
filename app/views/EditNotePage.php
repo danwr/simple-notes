@@ -52,6 +52,9 @@ function tagsArray($tags) {
 		span.tags em {
 		    color: rgb(170, 85, 17);
 		}
+		input, textarea {
+			font: 12pt helvetica;
+		}
         textarea {
             resize: vertical; /* allow only vertical stretch */
         }
