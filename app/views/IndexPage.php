@@ -98,39 +98,6 @@ function insertNoteLink($base_href, $ref) {
                             </div>
                         </td>
                     </tr>
-                    <div class="modal fade" id="<?php echo $note->getID(); ?>" role="dialog">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Edit note</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form role="form" action="<?php insertAction($base_href, 'update');?>" method="POST">
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" placeholder="Title" name="title"
-                                                   value="<?php echo $note->getTitle(); ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control"
-                                                      rows="5" style="width:98%;"
-                                                      placeholder="What do you have in mind?"
-                                                      name="content"
-                                                      required><?= $note->getContent(); ?></textarea>
-                                        </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="hidden" name="id" value="<?php echo $note->getID(); ?>">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn btn-success" name="edit" type="submit">
-                                            <span class="glyphicon glyphicon-floppy-disk"></span> Save
-                                        </button>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 <?php endforeach; ?>
                 </tbody>
             </table>
