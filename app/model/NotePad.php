@@ -119,12 +119,14 @@ class NotePad
         printf("create: title,content,tags = '%s','%s','%s'\n", $title, $content, $tags);
         $statement = $this->connection->prepare('INSERT INTO notes (ref, title, content, tags, creation)
                                                                    VALUES(:ref, :title, :content, :tags, :creation)');
-        $statement->bindParam(':ref', $this->newRandomRef()); 
+        $ref = $this->newRandomRef();
+        $statement->bindParam(':ref', $ref); 
         $statement->bindParam(':title', trim($title));
         $statement->bindParam(':content', trim($content));
         $statement->bindParam(':tags', trim($tags));
         $statement->bindParam(':creation', $datetime);
         $statement->execute();
+        return $ref;
     }
     
     public function flushAll()

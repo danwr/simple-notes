@@ -22,28 +22,31 @@ class NotesController extends Controller
     public function index($get = null)
     {
         // TODO: Restricted access.
-        print("NotesController::index\n");
         $notes = $this->notepad->loadAllNotes();
         return $this->renderer()->renderView('IndexPage', array('notes' => $notes, 'base_href' => $this->base_href));
     }
     
     public function delete($get = null)
     {
-        // TODO: Restricted access.
+        // Restricted access.
         print("NotesController::delete\n");
         if (!is_null($get)) {
-            $this->notepad->delete($get['id']);
+            $id = $this->notepad->IDForRef($ref);
+            if (!is_null($id)) {
+                $this->notepad->delete($id);
+            }
         }
         return $this->redirect($this->base_href);
     }
     
     public function insert($post = null)
     {
-        // TODO: Restricted access.
-
-        $this->notepad->create($post['title'], $post['content'], $post['tags']);
-        //return $this->redirect($this->base_href . 'list');
-        return true; // temp for easier debuggin
+        // Restricted access.
+        $ref = $this->notepad->create($post['title'], $post['content'], $post['tags']);
+        if (!is_null($ref)) {
+            return $this->redirect($this->base_href . 'note/?ref=' . $ref);
+        }
+        return $this->redirect($this->base_href . 'list/');
     }
     
     public function edit($get)
@@ -57,10 +60,9 @@ class NotesController extends Controller
     public function update($post)
     {
         $this->notepad->edit($post['id'], $post['title'], $post['content'], $post['tags']);
- 
-	$id = $post['id'];
-	$note = $this->notepad->loadNote($id);
-	$this->renderer()->renderView('NotePage', array('note' => $note, 'base_href' => $this->base_href));  
+        $id = $post['id'];
+        $note = $this->notepad->loadNote($id);
+        $this->renderer()->renderView('NotePage', array('note' => $note, 'base_href' => $this->base_href));  
         //return $this->redirect($this->base_href . 'list/');
     }
 
