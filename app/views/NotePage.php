@@ -16,8 +16,6 @@ function tagsArray($tags) {
 	return explode(' ', $tags);
 }
 
-use utilties\relativeDate;
-
 ?>
 <html>
 <head>
