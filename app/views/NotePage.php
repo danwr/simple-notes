@@ -47,10 +47,7 @@ function tagsArray($tags) {
 	    	color: #88aa88;
 	    }
 	    
-		span.tags {
-			color: #666666;
-		}
-		span.tags em {
+		span.tags span {
 		    color: rgb(170, 85, 17);
 		}
         textarea {
@@ -73,11 +70,9 @@ function tagsArray($tags) {
     <?php echo relativeDate($note->getCreationDateTime()); ?>
     </span>
     &nbsp;
-    <span class="tags">tags:
-    <?php foreach ($tagArray as $tag): ?>
-    <em><?php echo $tag; ?></em> 
-    <?php endforeach; ?>
-    </span>
+    <span class="tags"><?php foreach ($tagArray as $tag): ?>
+    <span><?php echo $tag; ?></span> 
+    <?php endforeach; ?></span>
     &nbsp;
     <a href="<?php echo $base_href . 'edit/?ref=' . $note->getRef(); ?>">edit</a>
     </div>
