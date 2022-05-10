@@ -75,6 +75,8 @@ function tagsArray($tags) {
     <?php endforeach; ?></span>
     &nbsp;
     <a href="<?php echo $base_href . 'edit/?ref=' . $note->getRef(); ?>">edit</a>
+    &nbsp;
+    <a href="<?php echo $base_href . 'list/'; ?>">index</a>
     </div>
 </div>
 
