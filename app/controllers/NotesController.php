@@ -24,7 +24,7 @@ class NotesController extends Controller
         // TODO: Restricted access.
         $notes = $this->notepad->loadAllNotes();
         $options = array('notes' => $notes, 'base_href' => $this->base_href);
-        if (isset($get['tag'])) {
+        if (isset($get['tag']) && !is_null($get['tag'])) {
             $options['tag'] = $get['tag'];
         }
         return $this->renderer()->renderView('IndexPage', options);

@@ -36,10 +36,10 @@ $filterTag = $args['tag'];
 
 <body>
 
-<?php if (isset($filterTag)): ?>
+<?php if (!is_null($filterTag)): ?>
 <h3>Tag: <?php echo $filterTag; ?></h3>
 <?php endif; ?>
-<?php if (!isset($filterTag)): ?>
+<?php if (!is_null($filterTag)): ?>
 <div class="container">
     <div class="page-header">
         <h2>Post a new note</h2>
