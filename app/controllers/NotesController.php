@@ -21,13 +21,20 @@ class NotesController extends Controller
 
     public function index($get = null)
     {
-        // TODO: Restricted access.
         $notes = $this->notepad->loadAllNotes();
         $options = array('notes' => $notes, 'base_href' => $this->base_href);
-        if (isset($get['tag']) && !is_null($get['tag'])) {
-            $options['tag'] = $get['tag'];
+        $tag = $get['tag'];
+        if (!is_null($tag)) {
+            $options['tag'] = $tag;
+            $matches = array();
+            foreach ($notes as $note) {
+               if ($note->hasTag($tag)) {
+                   array_push($matches, $note);
+               }
+            }
+            $options['notes'] = $matches;
         }
-        return $this->renderer()->renderView('IndexPage', options);
+        return $this->renderer()->renderView('IndexPage', $options);
     }
     
     public function delete($get = null)

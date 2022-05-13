@@ -63,6 +63,12 @@ class Note
         return $this->tags;
     }
 
+    public function hasTag($tag)
+    {
+        $tagArray = explode(' ', $this->tags);
+        return in_array($tag, $tagArray);
+    }
+
     public function getCreationDateTime()
     {
         return $this->creation;
