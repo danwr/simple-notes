@@ -41,12 +41,14 @@ class Note
     
     public function getBriefTitle()
     {
-        return htmlspecialchars(substr($this->title, 0, 15), ENT_QUOTES, 'UTF-8');
+    	if (strlen($this->title) < 18) {
+    		return htmlspecialchars($this->title, ENT_QUOTES, 'UTF-8');
+    	}
+        return htmlspecialchars(substr($this->title, 0, 18), ENT_QUOTES, 'UTF-8') . '&hellip;';
     }
     
     public function getContent()
     {
-        // TODO: markdown support
         return htmlspecialchars($this->content, ENT_QUOTES, 'UTF-8');
     }
     
