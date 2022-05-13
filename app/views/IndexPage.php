@@ -11,6 +11,8 @@ function insertAction($base_href, $action) {
 function insertNoteLink($base_href, $ref) {
         echo $base_href . 'note/?ref=' . $ref;
 }
+$filterTag = $args['tag'];
+
 ?>
 <html>
 <head>
@@ -18,7 +20,8 @@ function insertNoteLink($base_href, $ref) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Notes</title>
-    <link rel="stylesheet" href="//bootswatch.com/flatly/bootstrap.css">
+    <!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
@@ -34,6 +37,10 @@ function insertNoteLink($base_href, $ref) {
 
 <body>
 
+<?php if (isset($filterTag)): ?>
+<h3>Tag: <?php echo $filterTag; ?></h3>
+<?php endif; ?>
+<?php if (!isset($filterTag)): ?>
 <div class="container">
     <div class="page-header">
         <h2>Post a new note</h2>
@@ -57,7 +64,7 @@ function insertNoteLink($base_href, $ref) {
         </div>
     </form>
 </div>
-
+<?php endif; ?>
 <?php if (!empty($args['notes'])): ?>
     <div class="container" id="notes">
         <div class="page-header">

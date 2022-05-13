@@ -78,8 +78,8 @@ function tagsArray($tags) {
     	<input type="hidden" name="ref" value="<?php echo $note->getRef(); ?>">
     	<input type="hidden" name="id" value="<?php echo $note->getID(); ?>">
     	<div class="form-group">
-    		<input class="form-control" type="text" name="title" required value="<?php echo $note->getTitle(); ?>">
-    		<input class="form-control" type="text" name="tags" id="tags" value="<?php echo $note->getTags(); ?>">
+    		<input class="form-control" type="text" name="title" required placeholder="Title" value="<?php echo $note->getTitle(); ?>">
+    		<input class="form-control" type="text" name="tags" id="tags" placeholder="tags" value="<?php echo $note->getTags(); ?>">
     	</div>
     	<div class="form-group">
     		<textarea class="form-control" rows="20" style="width:98%;" name="content" required><?php echo $note->getContent(); ?></textarea>
