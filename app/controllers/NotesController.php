@@ -23,7 +23,11 @@ class NotesController extends Controller
     {
         // TODO: Restricted access.
         $notes = $this->notepad->loadAllNotes();
-        return $this->renderer()->renderView('IndexPage', array('notes' => $notes, 'base_href' => $this->base_href));
+        $options = array('notes' => $notes, 'base_href' => $this->base_href);
+        if (isset($get['tag'])) {
+            $options['tag'] = $get['tag'];
+        }
+        return $this->renderer()->renderView('IndexPage', options);
     }
     
     public function delete($get = null)

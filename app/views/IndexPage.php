@@ -20,7 +20,6 @@ $filterTag = $args['tag'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Notes</title>
-    <!-- CSS only -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -68,7 +67,7 @@ $filterTag = $args['tag'];
 <?php if (!empty($args['notes'])): ?>
     <div class="container" id="notes">
         <div class="page-header">
-            <h2>Previously sent</h2>
+            <h2>Saved Notes</h2>
         </div>
 
         <div class="table-responsive">
@@ -91,7 +90,7 @@ $filterTag = $args['tag'];
                         <td><?php echo $note->getCreationDateTime()->format('d/m/Y'); ?></td>
                         <td class="pull-right">
                             <div class="btn-group">
-                                <a class="btn btn-default btn-xs" title="Edit this note" href="#" data-toggle="modal"
+                                <a class="btn btn-default btn-xs" title="Edit this note" href="<?php insertAction($base_href, 'edit/?ref=' . $note->getRef()); ?>" data-toggle="modal"
                                    data-target="#<?php echo $note->getID(); ?>">
                                     <span class="glyphicon glyphicon-edit"></span>
                                 </a>
