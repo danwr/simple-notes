@@ -80,8 +80,6 @@ function tagsArray($tags) {
     &nbsp;
     <a href="<?php echo $base_href . 'edit/?ref=' . $note->getRef(); ?>">edit</a>
     &nbsp;
-    <a class="destructive" href="<?php echo $base_href . 'delete/?ref=' . $note->getRef(); ?>">delete</a>
-    &nbsp;
     <a href="<?php echo $base_href . 'list/'; ?>">index</a>
     </div>
 </div>
