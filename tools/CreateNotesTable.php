@@ -17,11 +17,12 @@ class CreateNotesTable
     {
         $this->connection->exec('CREATE TABLE IF NOT EXISTS notes (
                 id      INTEGER PRIMARY KEY AUTOINCREMENT,
-		ref	TEXT KEY NOT NULL,
+                ref     TEXT KEY NOT NULL,
                 title   TEXT NOT NULL,
                 content TEXT NOT NULL,
                 tags    TEXT NOT NULL,
-                creation DATETIME NOT NULL
+                creation DATETIME NOT NULL,
+                modified DATETIME
                 );');
     }
     
