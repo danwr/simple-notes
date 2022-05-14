@@ -69,7 +69,7 @@ function tagsArray($tags) {
     <script>
     function onDeletePress() {
     	if (confirm("You are about to delete this note forever. If you've linked to it, those links will now be broken. Are you sure you want to delete it?")) {
-    		window.location.href = "<?php echo $base_href . '/delete/?ref=' . $note->getRef(); ?>";
+    		window.location.href = "<?php echo $base_href . 'delete/?ref=' . $note->getRef(); ?>";
     	}
     }
     </script>
