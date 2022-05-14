@@ -71,13 +71,16 @@ function tagsArray($tags) {
     <?php echo $note->getContentAsHTML(); ?>
     </div>
     <div class="metadata">
+    <?php if ($note->getModifiedDateTime()->getTimestamp() - $note->getCreationDateTime()->getTimestamp() > 24*3600.0) { ?>
+    <span class="modified">
+    edited <?php echo relativeDate($note->getModifiedDateTime()); ?>
+    </span>
+	<?php } else { ?>    
     <span class="creation">
     <?php echo relativeDate($note->getCreationDateTime()); ?>
     </span>
+    <?php> } ?>
     &nbsp;
-    <span class="modified">
-    <?php echo relativeDate($note->getModifiedDateTime()); ?>
-    </span>
     &nbsp;
     <span class="tags"><?php foreach ($tagArray as $tag): ?>
     <a href="<?php insertAction($base_href, 'list/?tag=' . $tag); ?>"><?php echo $tag; ?></a> 
