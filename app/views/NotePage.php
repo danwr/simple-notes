@@ -48,9 +48,10 @@ function tagsArray($tags) {
 	    	color: #88aa88;
 	    }
 	    
-		span.tags span {
-		    color: rgb(170, 85, 17);
-		}
+	span.tags a {
+            color: rgb(170, 85, 17);
+            text-decoration: none;
+	}
         textarea {
             resize: vertical; /* allow only vertical stretch */
         }
@@ -75,7 +76,7 @@ function tagsArray($tags) {
     </span>
     &nbsp;
     <span class="tags"><?php foreach ($tagArray as $tag): ?>
-    <span><?php echo $tag; ?></span> 
+    <a href="<?php echo $base_href . 'list/?tag=' . $tag; ?>"><?php echo $tag; ?></a> 
     <?php endforeach; ?></span>
     &nbsp;
     <a href="<?php echo $base_href . 'edit/?ref=' . $note->getRef(); ?>">edit</a>
