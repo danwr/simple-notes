@@ -13,6 +13,7 @@ class Note
     private $content;
     private $tags;
     private $creation;
+    private $modified;
     
     function __construct($row)
     {
@@ -22,6 +23,7 @@ class Note
         $this->content = $row['content'];
         $this->tags = $row['tags'];
         $this->creation = new DateTime($row['creation']);
+        $this->modified = is_null($row['modified']) ? $this->creation : new DateTime($row['modified']);
     }
     
     public function getID()
@@ -72,6 +74,11 @@ class Note
     public function getCreationDateTime()
     {
         return $this->creation;
+    }
+    
+    public function getModifiedDateTime()
+    {
+    	return $this->modified;
     }
 }
 

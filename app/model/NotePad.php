@@ -55,11 +55,8 @@ class NotePad
             $valB = rand_int_compat(1, 14);
             $valC = rand_int_compat(0, 99);
             $val = $valC + 100 * ($valB + 15 * $valA);
-	    print("newRandomRef. val = "); print($val);
             $base64encoded = base64_encode(strval($val));
-            print("newRandomRef. base64encoded = "); print($base64encoded);
             $ref = rtrim(strtr($base64encoded, '+/', '-_'), '=');
-            print("newRandomRef. ref = "); print($ref);
         } while (in_array($ref, $refs));
 
         printf("newRandomRef: %s\n", $ref);        
@@ -81,7 +78,7 @@ class NotePad
     
     public function loadAllNotes() 
     {
-        $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes ORDER BY creation DESC');
+        $statement = $this->connection->prepare('SELECT * FROM notes ORDER BY creation DESC');
         $statement->execute();
         
         $rawNotes = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -97,7 +94,7 @@ class NotePad
     
     public function loadNote($id)
     {
-        $statement = $this->connection->prepare('SELECT id, ref, title, content, tags, creation FROM notes WHERE id = :id');
+        $statement = $this->connection->prepare('SELECT * FROM notes WHERE id = :id');
         $statement->bindParam(':id', $id);
         $statement->execute();
         
@@ -117,14 +114,15 @@ class NotePad
     {
         $datetime = date("Y-m-d H:i:s");
         printf("create: title,content,tags = '%s','%s','%s'\n", $title, $content, $tags);
-        $statement = $this->connection->prepare('INSERT INTO notes (ref, title, content, tags, creation)
-                                                                   VALUES(:ref, :title, :content, :tags, :creation)');
+        $statement = $this->connection->prepare('INSERT INTO notes (ref, title, content, tags, creation, modified)
+                                                                   VALUES(:ref, :title, :content, :tags, :creation, :modified)');
         $ref = $this->newRandomRef();
         $statement->bindParam(':ref', $ref); 
         $statement->bindParam(':title', trim($title));
         $statement->bindParam(':content', trim($content));
         $statement->bindParam(':tags', trim($tags));
         $statement->bindParam(':creation', $datetime);
+        $statement->bindParam(':modified', $datetime);
         $statement->execute();
         return $ref;
     }
@@ -144,11 +142,13 @@ class NotePad
     
     public function edit($id, $title, $content, $tags)
     {
-        $statement = $this->connection->prepare('UPDATE notes SET title = :title, content = :content, tags = :tags WHERE id = :id');
+        $statement = $this->connection->prepare('UPDATE notes SET title = :title, content = :content, tags = :tags, modified = :modified WHERE id = :id');
+        $modified = date("Y-m-d H:i:s");
         $statement->bindParam(':id', $id);
         $statement->bindParam(':title', trim($title));
         $statement->bindParam(':content', trim($content));
         $statement->bindParam(':tags', $this->normalizeTags($tags));
+        $statement->bindParam(':modified', $modified);
         $statement->execute();
     }
     
