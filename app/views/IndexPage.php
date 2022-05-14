@@ -36,9 +36,6 @@ $filterTag = $args['tag'];
 
 <body>
 
-<?php if (!is_null($filterTag)): ?>
-<h3>Tag: <?php echo $filterTag; ?></h3>
-<?php endif; ?>
 <?php if (is_null($filterTag)): ?>
 <div class="container">
     <div class="page-header">
@@ -67,7 +64,7 @@ $filterTag = $args['tag'];
 <?php if (!empty($args['notes'])): ?>
     <div class="container" id="notes">
         <div class="page-header">
-            <h2>Saved Notes</h2>
+            <h2>Notes<?php if (!is_null($filterTag)) { printf(": %s", $filterTag); } ?></h2>
         </div>
 
         <div class="table-responsive">
