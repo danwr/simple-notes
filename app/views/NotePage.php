@@ -28,35 +28,35 @@ function tagsArray($tags) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <style>
-    	body {
-			font-family: "Helvetica Neue", helvetica, sans-serif;   
-			margin: 1em 1em 1em 1em;
-			line-height: 1.5em;
-    	}
+        body {
+            font-family: "Helvetica Neue", helvetica, sans-serif;   
+            margin: 1em 1em 1em 1em;
+            line-height: 1.5em;
+        }
         .container {
             width: 680px;
             margin: auto;
         }
 
-		div.metadata {
-			padding-top: 1em;
-			margin-left: 1em;
-			color: #888888;
-		}
-		
-	    span.creation {
-	    	color: #88aa88;
-	    }
-	    
-	span.tags a {
+        div.metadata {
+            padding-top: 1em;
+            margin-left: 1em;
+            color: #888888;
+        }
+        
+        span.creation, span.modified {
+            color: #88aa88;
+        }
+        
+        span.tags a {
             color: rgb(170, 85, 17);
             text-decoration: none;
-	}
+        }
         textarea {
             resize: vertical; /* allow only vertical stretch */
         }
         a.destructive {
-        	color: rgb(128, 0, 0);
+            color: rgb(128, 0, 0);
         }
     </style>
 </head>
@@ -75,8 +75,12 @@ function tagsArray($tags) {
     <?php echo relativeDate($note->getCreationDateTime()); ?>
     </span>
     &nbsp;
+    <span class="modified">
+    <?php echo relativeDate($note->getModifiedDateTime()); ?>
+    </span>
+    &nbsp;
     <span class="tags"><?php foreach ($tagArray as $tag): ?>
-    <a href="<?php echo $base_href . 'list/?tag=' . $tag; ?>"><?php echo $tag; ?></a> 
+    <a href="<?php insertAction($base_href, 'list/?tag=' . $tag); ?>"><?php echo $tag; ?></a> 
     <?php endforeach; ?></span>
     &nbsp;
     <a href="<?php echo $base_href . 'edit/?ref=' . $note->getRef(); ?>">edit</a>
