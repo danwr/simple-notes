@@ -42,12 +42,13 @@ class NotesController extends Controller
         // Restricted access.
         print("NotesController::delete\n");
         if (!is_null($get)) {
+            $ref = $get['ref'];
             $id = $this->notepad->IDForRef($ref);
             if (!is_null($id)) {
                 $this->notepad->delete($id);
             }
         }
-        return $this->redirect($this->base_href);
+        return $this->redirect($this->base_href . 'list/');
     }
     
     public function insert($post = null)
@@ -72,9 +73,8 @@ class NotesController extends Controller
     {
         $this->notepad->edit($post['id'], $post['title'], $post['content'], $post['tags']);
         $id = $post['id'];
-        $note = $this->notepad->loadNote($id);
-        $this->renderer()->renderView('NotePage', array('note' => $note, 'base_href' => $this->base_href));  
-        //return $this->redirect($this->base_href . 'list/');
+        $note = $this->notepad->loadNote($id);  
+        return $this->redirect($this->base_href . 'note/?ref=' . $note->getRef());
     }
 
     public function show($get = null)
