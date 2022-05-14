@@ -43,10 +43,10 @@ class Note
     
     public function getBriefTitle()
     {
-    	if (strlen($this->title) < 18) {
+    	if (strlen($this->title) < 27) {
     		return htmlspecialchars($this->title, ENT_QUOTES, 'UTF-8');
     	}
-        return htmlspecialchars(substr($this->title, 0, 18), ENT_QUOTES, 'UTF-8') . '&hellip;';
+        return htmlspecialchars(substr($this->title, 0, 27), ENT_QUOTES, 'UTF-8') . '&hellip;';
     }
     
     public function getContent()
@@ -68,7 +68,7 @@ class Note
     public function hasTag($tag)
     {
         $tagArray = explode(' ', $this->tags);
-        return in_array($tag, $tagArray);
+        return strlen($tag) > 0 &&  in_array($tag, $tagArray);
     }
 
     public function getCreationDateTime()
