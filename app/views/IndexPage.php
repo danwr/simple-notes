@@ -84,7 +84,7 @@ $filterTag = $args['tag'];
                             <small><a href="<?php insertNoteLink($base_href, $note->getRef()); ?>"><?php echo $note->getBriefTitle(); ?></a></small>
                         </td>
                         <td><?php echo $note->getCreationDateTime()->format('H:i'); ?></td>
-                        <td><?php echo $note->getCreationDateTime()->format('d/m/Y'); ?></td>
+                        <td><?php echo $note->getCreationDateTime()->format('Y M j'); ?></td>
                         <td class="pull-right">
                             <div class="btn-group">
                                 <a class="btn btn-default btn-xs" title="Edit this note" href="<?php insertAction($base_href, 'edit/?ref=' . $note->getRef()); ?>" data-toggle="modal"
