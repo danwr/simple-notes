@@ -30,9 +30,9 @@ function relativeDate($datetime) {
 	} else if ($isYesterday) {
 		return "yesterday";
 	} else if ($hoursBeforeNow <= 24.0*28.5) {
-		return sprintf("%d days ago", (int)round($hoursBeforeNow / 24.0));
+		return sprintf("%d days ago", (int)ceil($hoursBeforeNow / 24.0));
 	} else if ($hoursBeforeNow <= 24.0*7.0*10.0) {
-		return sprintf("%d weeks ago", (int)round($hoursBeforeNow / (24.0*7.0)));
+		return sprintf("%d weeks ago", (int)ceil($hoursBeforeNow / (24.0*7.0)));
 	} else {
 		return $datetime->format('F Y');
 	}
