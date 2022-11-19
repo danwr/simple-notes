@@ -83,7 +83,7 @@ function tagsArray($tags) {
     <span class="creation">
     <?php echo relativeDate($note->getCreationDateTime()); ?>
     </span>
-    <?php> } ?>
+    <?php } ?>
     &nbsp;
     &nbsp;
     <span class="tags"><?php foreach ($tagArray as $tag): ?>
