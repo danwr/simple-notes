@@ -32,10 +32,14 @@ function tagsArray($tags) {
             font-family: "Helvetica Neue", helvetica, sans-serif;   
             margin: 1em 1em 1em 1em;
             line-height: 1.5em;
+            background: #676;
         }
         .container {
             width: 680px;
             margin: auto;
+            background: bisque;
+            border: 1px solid black;
+            padding: 2em;
         }
 
         div.metadata {
